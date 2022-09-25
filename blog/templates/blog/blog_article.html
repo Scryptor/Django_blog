@@ -1,0 +1,62 @@
+{% extends "index.html" %}
+
+{% load thumbnail %}
+
+{% block application %}
+    <div class="row bg-white shadow-sm">
+        <h2 class="my-3">{{ article.title }}</h2><br>
+        <div class="ps-4">
+            {% thumbnail article.preview "1270" as im %}
+                <img src="{{ im.url }}" alt="{{ article.title }}" class="img-fluid shadow-lg">
+            {% endthumbnail %}
+        </div>
+        <div class="p-3">
+            <div class="ps-2 fs-4">
+                {{ article.full_text|safe }}
+            </div>
+            <p class="small float-end pt-4">
+                {{ article.creation_date }}
+            </p>
+        </div>
+    </div>
+    <div class="row bg-white shadow-sm mt-3 py-2 rounded-2">
+        <h4>Комментарии</h4>
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="author_name" class="form-label">Имя</label>
+                <input type="text" class="form-control" id="author_name" name="author_name"
+                       aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+                <label for="text" class="form-label">Комментарий</label>
+                <textarea class="form-control" id="text" rows="3" name="text"></textarea>
+                {{ form.article }}
+            </div>
+            <button type="submit" class="btn btn-primary">Отправить</button>
+        </form>
+
+
+    </div>
+
+    {% for comnt in comment %}
+        <div class="d-flex flex-start mt-3">
+            <img class="rounded-circle shadow-1-strong me-3"
+                 src="/media/blog/imgs/avatpic.jpg" alt="avatar"
+                 width="65"
+                 height="65"/>
+            <div class="card container-fluid">
+                <div class="card-body p-4">
+                    <div class="">
+                        <h5>{{ comnt.author_name }}</h5>
+                        <p class="small">{{ comnt.date }}</p>
+                        <p>
+                            {{ comnt.text|safe }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    <br>
+{% endblock %}

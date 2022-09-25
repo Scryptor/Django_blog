@@ -1,0 +1,15 @@
+{% extends "index.html" %}
+
+{% load thumbnail %}
+
+{% block application %}
+    <form>
+        <div class="mb-3">
+            <label for="urlDecoder" class="form-label">Введите адрес вашего сайта</label>
+            <input type="text" class="form-control" id="urlDecoder" aria-describedby="urldecoding" name="text">
+        </div>
+        <button type="submit" class="btn btn-primary">Перекодировать</button>
+    </form>
+    <h5 class="pt-5">Перкодированный текст</h5>
+    <input class="form-control" type="text" value="{{ text_to_convert }}" disabled readonly>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends "index.html" %}
+{% block application %}
+    <body>
+    {% verbatim %}
+    <div class="container" id="aboutme_app">
+        <div class="row bg-white shadow-sm" v-for="m in me">
+            <div class="col-8 mt-2">
+                <p class="fs-2">
+                    {{ m.fio }},
+                    <mark>{{ m.nik }}</mark>
+                </p>
+                <p>
+                    <b>Родился:</b> {{ m.birthday }}
+                </p>
+                <p>
+                    <b>Мои соц сети:</b>
+                </p>
+                <div>
+                    <a v-bind:href=m.contacts_tg target="_blank">{{ m.contacts_tg }}</a>
+                    <br>
+                    <a class="mt-2" v-bind:href=m.contacts_vk target="_blank">{{ m.contacts_vk}}</a>
+                    <br>
+                    <a v-bind:href=m.contacts_youtube target="_blank">{{ m.contacts_youtube }}</a>
+                    <br>
+                    <a v-bind:href=m.contacts_habr target="_blank">{{ m.contacts_habr }}</a>
+                    <br>
+                    <a v-bind:href=m.contacts_pikabu target="_blank">{{ m.contacts_pikabu }}</a>
+                    <br>
+
+                </div>
+                <div class="mt-2">
+                    <div v-html="m.about"></div>
+                </div>
+
+            </div>
+            <div class="col-4 mt-2">
+                <img class="img-fluid mt-2 me-2 shadow-sm" v-bind:src="m.avatar"/>
+            </div>
+
+        </div>
+    </div>
+    {% endverbatim %}
+
+    <script src="/static/app.js"></script>
+    </body>
+    </html>
+{% endblock %}
