@@ -13,6 +13,7 @@ class AboutMe(models.Model):
     contacts_youtube = models.CharField("Youtube", max_length=100)
     contacts_habr = models.CharField("habr", max_length=100)
     contacts_pikabu = models.CharField("Пикабу", max_length=100)
+    contacts_github = models.CharField("github", max_length=200)
 
     about = RichTextField("Обо мне", blank=True, null=True)
 
