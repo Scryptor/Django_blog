@@ -25,11 +25,22 @@
                 <br>
                 <a v-bind:href=blog.id type="button" class="btn btn-outline-secondary">Читать
                     далее</a>
-
             </div>
 
         </div>
+        <div>
+            <nav aria-label="PageNumbers">
+                <ul class="pagination">
+                    <li class="page-item"><a class="page-link" style="cursor: pointer" v-show="prevpage"
+                                             @click="goToPrevPage">i--</a></li>
+                    <li class="page-item"><a class="page-link" href="#">{{ currpage }}</a></li>
+                    <li class="page-item"><a class="page-link" style="cursor: pointer" v-show="nextpage"
+                                             @click="goToNextPage">i++</a></li>
+                </ul>
+            </nav>
+        </div>
     </div>
+
     </body>
     {% endverbatim %}
     <script src="/static/blogapp.js"></script>

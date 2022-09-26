@@ -14,8 +14,8 @@ from django.db.models import Q, Count
 from comments.models import Comments
 
 
-# class PagePagination(PageNumberPagination):
-#     page_size = 3
+class PagePagination(PageNumberPagination):
+    page_size = 3
 
 
 class BlogView(ModelViewSet):
@@ -27,7 +27,7 @@ class BlogView(ModelViewSet):
         ).filter(active=True)
 
     serializer_class = BlogSerializer
-    # pagination_class = PagePagination
+    pagination_class = PagePagination
     filter_backends = [DjangoFilterBackend, OrderingFilter, SearchFilter]
     ordering_fields = ['creation_date']
     search_fields = ['title', 'full_text']

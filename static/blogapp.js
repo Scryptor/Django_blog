@@ -1,13 +1,38 @@
 new Vue({
         el: '#blog_app',
         data: {
-            blogs: []
+            blogs: [],
+            nextpage: null,
+            prevpage: null,
+            currpage: 1,
         },
         created: function () {
             const vm = this
             axios.get('/api/v1/posts/?ordering=-creation_date').then(function (response) {
-                vm.blogs = response.data
+                vm.blogs = response.data.results
+                vm.nextpage = response.data.next
+                vm.prevpage = response.data.previous
             })
+        },
+        methods: {
+            goToNextPage() {
+                this.currpage++
+                const vm = this
+                axios.get(this.nextpage).then(function (response) {
+                    vm.blogs = response.data.results
+                    vm.nextpage = response.data.next
+                    vm.prevpage = response.data.previous
+                })
+            },
+            goToPrevPage() {
+                this.currpage--
+                const vm = this
+                axios.get(this.prevpage).then(function (response) {
+                    vm.blogs = response.data.results
+                    vm.nextpage = response.data.next
+                    vm.prevpage = response.data.previous
+                })
+            }
         }
     }
 )
