@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from blog.views import blog_list, blog_article, BlogView, blog_app
 from aboutme.views import AboutMeView, aboutme_app
+from comments.views import CommentsView
 from django.conf.urls.static import static
 from django.conf import settings
 from igors_tools.views import puny
@@ -25,10 +26,11 @@ from rest_framework.routers import SimpleRouter
 router = SimpleRouter()
 router.register('api/v1/posts', BlogView)
 router.register('api/v1/about', AboutMeView)
+router.register('api/v1/comments', CommentsView)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-   # path('', blog_list, name="home"),
+    # path('', blog_list, name="home"),
     path("<int:article_id>", blog_article, name="article"),
     path('punyrl/', puny),
     path('aboutme/', aboutme_app, name="aboutmepage"),

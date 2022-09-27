@@ -38,9 +38,9 @@
 
 
     </div>
-
-    {% for comnt in comment %}
-        <div class="d-flex flex-start mt-3">
+    {% verbatim %}
+    <div id="comments_app">
+        <div class="d-flex flex-start mt-3" v-for="comment in comments">
             <img class="rounded-circle shadow-1-strong me-3"
                  src="/media/blog/imgs/avatpic.jpg" alt="avatar"
                  width="65"
@@ -48,15 +48,37 @@
             <div class="card container-fluid">
                 <div class="card-body p-4">
                     <div class="">
-                        <h5>{{ comnt.author_name }}</h5>
-                        <p class="small">{{ comnt.date }}</p>
+                        <h5>{{ comment.author_name }}</h5>
+                        <p class="small">{{ comment.date | formatDate }}</p>
                         <p>
-                            {{ comnt.text|safe }}
+                            {{ comment.text }}
                         </p>
                     </div>
                 </div>
             </div>
         </div>
-    {% endfor %}
+    </div>
     <br>
+    {% endverbatim %}
+    <script>
+        new Vue({
+                el: '#comments_app',
+                data: {
+                    comments: []
+                },
+                created: function () {
+                    const vm = this
+                    axios.get('/api/v1/comments/?ordering=date&active=true&article={{ article.id }}').then(function (response) {
+                        vm.comments = response.data
+                    })
+                }
+            }
+        )
+        Vue.filter('formatDate', function (value) {
+            if (value) {
+                let dtime = new Date(value);
+                return dtime.toLocaleString()
+            }
+        });
+    </script>
 {% endblock %}

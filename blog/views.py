@@ -52,8 +52,6 @@ def blog_list(request):
 
 def blog_article(request, article_id):
     article = get_object_or_404(Article, id=article_id, active=True)
-    comment = Comments.objects.filter(article=article_id, active=True)
-    comment = comment.order_by("date")
     form = CommentForm(request.POST or None, initial={"article": article})
     if request.method == "POST":
         if form.is_valid():
@@ -63,7 +61,6 @@ def blog_article(request, article_id):
 
     return render(request, "blog/blog_article.html", {
         "article": article,
-        "comment": comment,
         "form": form,
         "sent": request.GET.get("sent")
     })
