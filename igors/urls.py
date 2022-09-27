@@ -30,8 +30,7 @@ router.register('api/v1/comments', CommentsView)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('', blog_list, name="home"),
-    path("<int:article_id>", blog_article, name="article"),
+    path("post/<int:article_id>", blog_article, name="article"),
     path('punyrl/', puny),
     path('aboutme/', aboutme_app, name="aboutmepage"),
     path('', blog_app, name="home"),

@@ -4,17 +4,17 @@
     <body>
     <div id="blog_app">
         <div class="row shadow-sm p-3 mb-3 bg-white" v-for="blog in blogs">
-            <a v-bind:href=blog.id class="text-decoration-none text-dark"><h3
+            <a v-bind:href="'post/' + blog.id" class="text-decoration-none text-dark"><h3
                     class="pb-3">{{ blog.title }}</h3></a>
 
             <div class="col-xxl-7 col-xl-8 col-lg-8 col-md-8 col-sm-8">
-                <a v-bind:href=blog.id>
+                <a v-bind:href="'post/' + blog.id">
                     <img v-bind:src=blog.preview class="img-fluid shadow" style="width: 715px">
                 </a>
                 <p class="pt-3" style="color:darkcyan">
                     {{ blog.creation_date | formatDate }}
                     &nbsp;&nbsp;&nbsp;
-                    Комментариев: {{ blog.num_comments }}
+                    <a v-bind:href="'post/' + blog.id + '#comments_app'">Комментариев: {{ blog.num_comments }}</a>
                 </p>
             </div>
 
@@ -23,7 +23,7 @@
                     {{ blog.full_text | truncate(100, '...')}}
                 </div>
                 <br>
-                <a v-bind:href=blog.id type="button" class="btn btn-outline-secondary">Читать
+                <a v-bind:href="'post/' + blog.id" type="button" class="btn btn-outline-secondary">Читать
                     далее</a>
             </div>
 
