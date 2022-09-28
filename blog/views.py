@@ -37,19 +37,6 @@ def blog_app(request):
     return render(request, 'blog/blog_app.html')
 
 
-def blog_list(request):
-    blog = Article.objects.annotate(num_comments=Count("comments")).filter(active=True)
-    blog = blog.order_by("-creation_date")
-    form = BlogFilterForm(request.GET)
-    if form.is_valid():
-        if form.cleaned_data["query"]:
-            blog = blog.filter(
-                Q(title__icontains=form.cleaned_data["query"].strip()) |
-                Q(full_text__icontains=form.cleaned_data["query"].strip())
-            )
-    return render(request, "blog/blog_list.html", {"blog": blog})
-
-
 def blog_article(request, article_id):
     article = get_object_or_404(Article, id=article_id, active=True)
     form = CommentForm(request.POST or None, initial={"article": article})

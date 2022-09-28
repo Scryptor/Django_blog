@@ -7,8 +7,12 @@ new Vue({
             currpage: 1,
         },
         created: function () {
+            let search_text = ''
+            let urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('query'))
+                search_text = urlParams.get('query');
             const vm = this
-            axios.get('/api/v1/posts/?ordering=-creation_date').then(function (response) {
+            axios.get('/api/v1/posts/?ordering=-creation_date&search=' + search_text).then(function (response) {
                 vm.blogs = response.data.results
                 vm.nextpage = response.data.next
                 vm.prevpage = response.data.previous
@@ -32,7 +36,7 @@ new Vue({
                     vm.nextpage = response.data.next
                     vm.prevpage = response.data.previous
                 })
-            }
+            },
         }
     }
 )
