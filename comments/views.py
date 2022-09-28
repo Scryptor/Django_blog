@@ -7,8 +7,8 @@ from comments.serializer import CommentsSerializer
 
 
 class CommentsView(ModelViewSet):
-    queryset = Comments.objects.all()
+    queryset = Comments.objects.filter(active=True)
     serializer_class = CommentsSerializer
     filter_backends = [DjangoFilterBackend, OrderingFilter, SearchFilter]
     ordering_fields = ['date']
-    filterset_fields = ['article', 'active']
+    filterset_fields = ['article']

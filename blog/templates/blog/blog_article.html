@@ -68,7 +68,7 @@
                 },
                 created: function () {
                     const vm = this
-                    axios.get('/api/v1/comments/?ordering=date&active=true&article={{ article.id }}').then(function (response) {
+                    axios.get('/api/v1/comments/?ordering=date&article={{ article.id }}').then(function (response) {
                         vm.comments = response.data
                     })
                 }
