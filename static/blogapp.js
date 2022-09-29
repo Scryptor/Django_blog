@@ -11,30 +11,27 @@ new Vue({
             let urlParams = new URLSearchParams(window.location.search);
             if (urlParams.has('query'))
                 search_text = urlParams.get('query');
-            const vm = this
-            axios.get('/api/v1/posts/?ordering=-creation_date&search=' + search_text).then(function (response) {
-                vm.blogs = response.data.results
-                vm.nextpage = response.data.next
-                vm.prevpage = response.data.previous
+            axios.get('/api/v1/posts/?ordering=-creation_date&search=' + search_text).then((response) => {
+                this.blogs = response.data.results
+                this.nextpage = response.data.next
+                this.prevpage = response.data.previous
             })
         },
         methods: {
             goToNextPage() {
                 this.currpage++
-                const vm = this
-                axios.get(this.nextpage).then(function (response) {
-                    vm.blogs = response.data.results
-                    vm.nextpage = response.data.next
-                    vm.prevpage = response.data.previous
+                axios.get(this.nextpage).then((response) => {
+                    this.blogs = response.data.results
+                    this.nextpage = response.data.next
+                    this.prevpage = response.data.previous
                 })
             },
             goToPrevPage() {
                 this.currpage--
-                const vm = this
-                axios.get(this.prevpage).then(function (response) {
-                    vm.blogs = response.data.results
-                    vm.nextpage = response.data.next
-                    vm.prevpage = response.data.previous
+                axios.get(this.prevpage).then((response) => {
+                    this.blogs = response.data.results
+                    this.nextpage = response.data.next
+                    this.prevpage = response.data.previous
                 })
             },
         }
