@@ -23,10 +23,13 @@ from django.conf import settings
 from igors_tools.views import puny
 from rest_framework.routers import SimpleRouter
 
+from prodmenu.views import prodmenu_app, ProdmenuView
+
 router = SimpleRouter()
 router.register('api/v1/posts', BlogView)
 router.register('api/v1/about', AboutMeView)
 router.register('api/v1/comments', CommentsView)
+router.register('api/v1/food/prodmenu', ProdmenuView)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -34,7 +37,7 @@ urlpatterns = [
     path('punyrl/', puny),
     path('aboutme/', aboutme_app, name="aboutmepage"),
     path('', blog_app, name="home"),
-
+    path('prodmenu/', prodmenu_app, name="eater"),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

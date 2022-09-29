@@ -10,7 +10,8 @@ INSTALLED_APPS = [
     'comments',
     'ckeditor',
     'igors_tools',
-    'aboutme'
+    'aboutme',
+    'prodmenu',
 ]
 
 DEBUG = True

@@ -1,0 +1,57 @@
+{% extends "index.html" %}
+{% block application %}
+    {% verbatim %}
+    <div id="prodmenu_app">
+        <div>Самостоятельное блюдо: {{ randomPr_indep }}</div>
+        <div>Гарнир + основное: {{ randomPr_garOsn }}</div>
+        <div>Суп: {{ randomPr_soup }}</div>
+        <button class="btn btn-primary" @click="getRandomFood">Поели</button>
+    </div>
+    {% endverbatim %}
+
+    <script>
+        new Vue({
+                el: '#prodmenu_app',
+                data: {
+                    products: [],
+                    products_independant: [],
+                    products_garnir: [],
+                    products_osnova: [],
+                    products_soup: [],
+                    randomPr_indep: "",
+                    randomPr_garOsn: "",
+                    randomPr_soup: "",
+                },
+                created: function () {
+                    const vm = this
+                    axios.get('/api/v1/food/prodmenu/').then(function (response) {
+                        vm.products = response.data
+                    })
+                },
+                methods: {
+                    getRandomFood() {
+
+                        this.products_independant = this.products.filter((value, index) => value.type_id === 1);
+                        this.products_garnir = this.products.filter((value, index) => value.type_id === 2);
+                        this.products_osnova = this.products.filter((value, index) => value.type_id === 3);
+                        this.products_soup = this.products.filter((value, index) => value.type_id === 4);
+
+                        const idx = Math.floor(Math.random() * this.products_independant.length);
+                        this.randomPr_indep = this.products_independant[idx].name
+
+                        let garOsn = ""
+                        const idxGar = Math.floor(Math.random() * this.products_garnir.length);
+                        garOsn = this.products_garnir[idx].name
+                        const idxOsn = Math.floor(Math.random() * this.products_osnova.length);
+                        garOsn += " и " + this.products_osnova [idx].name
+                        this.randomPr_garOsn = garOsn
+
+                        const idx2 = Math.floor(Math.random() * this.products_soup.length);
+                        this.randomPr_soup = this.products_soup[idx].name
+                    }
+                }
+            }
+        )
+    </script>
+
+{% endblock %}
