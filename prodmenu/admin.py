@@ -6,7 +6,7 @@ from prodmenu.models import Prodmenu, ProdmenuType
 # Register your models here.
 @admin.register(Prodmenu)
 class ProdMenuAdmin(admin.ModelAdmin):
-    list_display = ["name", "active"]
+    list_display = ["name", "active", 'image']
     ordering = ["-active"]
 
 

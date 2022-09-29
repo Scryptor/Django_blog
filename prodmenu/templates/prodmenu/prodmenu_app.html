@@ -1,11 +1,54 @@
 {% extends "index.html" %}
 {% block application %}
     {% verbatim %}
-    <div id="prodmenu_app">
-        <div>Самостоятельное блюдо: {{ randomPr_indep }}</div>
-        <div>Гарнир + основное: {{ randomPr_garOsn }}</div>
-        <div>Суп: {{ randomPr_soup }}</div>
-        <button class="btn btn-primary" @click="getRandomFood">Поели</button>
+    <div class="container" id="prodmenu_app">
+        <div class="row mt-2">
+            <button class="btn btn-primary rounded-0 mb-4" @click="getRandomFood">Поели</button>
+        </div>
+        <div class="row mb-1 bg-primary text-white">
+            <div role="button" class="col-3  border-3 border-end" @click="getIndepFood"><h5
+                    class="text-center text-break mb-2">
+                Самостоятельное блюдо</h5>
+            </div>
+            <div role="button" class="col-6" @click="getGarOsnFood"><h5 class="text-center text-break">Гарнир +
+                основное</h5></div>
+            <div role="button" class="col-3  border-3 border-start" @click="getSoupFood"><h5
+                    class="text-center text-break">Суп</h5>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-3 bg-white border-3 border-end">
+                <img :src="products_independant[idxprev1].image" class="img-fluid mt-2">
+                <h5 class="bg-info mt-2 p-1 ps-2 text-white">{{ randomPr_indep }}</h5>
+                <div class="text-center text-black-50 text-break mb-2">
+                    {{ products_independant[idxprev1].description }}
+                </div>
+            </div>
+
+            <div class="col-6 bg-white">
+                <div class="row">
+                    <img :src="products_garnir[idxprev2].image" class="img-fluid mt-2 col-6">
+                    <img :src="products_osnova[idxprev3].image" class="img-fluid mt-2 col-6">
+                </div>
+                <h5 class="bg-info mt-2 p-1 ps-2 text-white">{{ randomPr_garOsn }}</h5>
+                <div class="col-6 text-center text-black-50 text-break mb-2">
+                    {{ products_garnir[idxprev2].description }}
+                </div>
+                <div class="col-6 text-center text-black-50 text-break mb-2">
+                    {{ products_osnova[idxprev3].description }}
+                </div>
+            </div>
+
+            <div class="col-3 bg-white border-3 border-start">
+                <img :src="products_soup[idxprev4].image" class="img-fluid mt-2">
+                <h5 class="bg-info mt-2 p-1 ps-2 text-white">{{ randomPr_soup }}</h5>
+                <div class="text-center text-black-50 text-break mb-2">
+                    {{ products_soup[idxprev4].description }}
+                </div>
+            </div>
+        </div>
+
     </div>
     {% endverbatim %}
 
@@ -21,33 +64,104 @@
                     randomPr_indep: "",
                     randomPr_garOsn: "",
                     randomPr_soup: "",
+                    idxprev1: -1,
+                    idxprev2: -1,
+                    idxprev3: -1,
+                    idxprev4: -1,
                 },
                 created: function () {
                     const vm = this
                     axios.get('/api/v1/food/prodmenu/').then(function (response) {
                         vm.products = response.data
+
+                        vm.products_independant = response.data.filter((value, index) => value.type_id === 1);
+                        vm.products_garnir = response.data.filter((value, index) => value.type_id === 2);
+                        vm.products_osnova = response.data.filter((value, index) => value.type_id === 3);
+                        vm.products_soup = response.data.filter((value, index) => value.type_id === 4);
+
+                        vm.idxprev1 = Math.floor(Math.random() * vm.products_independant.length);
+                        vm.idxprev2 = Math.floor(Math.random() * vm.products_garnir.length);
+                        vm.idxprev3 = Math.floor(Math.random() * vm.products_osnova.length);
+                        vm.idxprev4 = Math.floor(Math.random() * vm.products_soup.length);
+
+                        vm.randomPr_indep = vm.products_independant[vm.idxprev1].name
+                        let garOsn = ""
+                        garOsn = vm.products_garnir[vm.idxprev2].name
+                        garOsn += " и " + vm.products_osnova [vm.idxprev3].name
+                        vm.randomPr_garOsn = garOsn
+                        vm.randomPr_soup = vm.products_soup[vm.idxprev4].name
                     })
                 },
                 methods: {
                     getRandomFood() {
 
-                        this.products_independant = this.products.filter((value, index) => value.type_id === 1);
-                        this.products_garnir = this.products.filter((value, index) => value.type_id === 2);
-                        this.products_osnova = this.products.filter((value, index) => value.type_id === 3);
-                        this.products_soup = this.products.filter((value, index) => value.type_id === 4);
+                        let idx1 = Math.floor(Math.random() * this.products_independant.length);
+                        while (idx1 === this.idxprev1) {
+                            idx1 = Math.floor(Math.random() * this.products_independant.length);
+                        }
+                        this.idxprev1 = idx1
+                        this.randomPr_indep = this.products_independant[idx1].name
 
-                        const idx = Math.floor(Math.random() * this.products_independant.length);
-                        this.randomPr_indep = this.products_independant[idx].name
 
                         let garOsn = ""
-                        const idxGar = Math.floor(Math.random() * this.products_garnir.length);
-                        garOsn = this.products_garnir[idx].name
-                        const idxOsn = Math.floor(Math.random() * this.products_osnova.length);
-                        garOsn += " и " + this.products_osnova [idx].name
+                        let idx2 = Math.floor(Math.random() * this.products_garnir.length);
+                        while (idx2 === this.idxprev2) {
+                            idx2 = Math.floor(Math.random() * this.products_garnir.length);
+                        }
+                        this.idxprev2 = idx2
+
+                        garOsn = this.products_garnir[idx2].name
+
+                        let idx3 = Math.floor(Math.random() * this.products_osnova.length);
+                        while (idx3 === this.idxprev3) {
+                            idx3 = Math.floor(Math.random() * this.products_osnova.length);
+                        }
+                        this.idxprev3 = idx3
+
+                        garOsn += " и " + this.products_osnova [idx3].name
                         this.randomPr_garOsn = garOsn
 
-                        const idx2 = Math.floor(Math.random() * this.products_soup.length);
-                        this.randomPr_soup = this.products_soup[idx].name
+                        let idx4 = Math.floor(Math.random() * this.products_soup.length);
+                        while (idx4 === this.idxprev4) {
+                            idx4 = Math.floor(Math.random() * this.products_soup.length);
+                        }
+                        this.idxprev4 = idx4
+                        this.randomPr_soup = this.products_soup[idx4].name
+                    },
+                    getIndepFood() {
+                        let idx1 = Math.floor(Math.random() * this.products_independant.length);
+                        while (idx1 === this.idxprev1) {
+                            idx1 = Math.floor(Math.random() * this.products_independant.length);
+                        }
+                        this.idxprev1 = idx1
+                        this.randomPr_indep = this.products_independant[idx1].name
+                    },
+                    getGarOsnFood() {
+                        let garOsn = ""
+                        let idx2 = Math.floor(Math.random() * this.products_garnir.length);
+                        while (idx2 === this.idxprev2) {
+                            idx2 = Math.floor(Math.random() * this.products_garnir.length);
+                        }
+                        this.idxprev2 = idx2
+
+                        garOsn = this.products_garnir[idx2].name
+
+                        let idx3 = Math.floor(Math.random() * this.products_osnova.length);
+                        while (idx3 === this.idxprev3) {
+                            idx3 = Math.floor(Math.random() * this.products_osnova.length);
+                        }
+                        this.idxprev3 = idx3
+
+                        garOsn += " и " + this.products_osnova [idx3].name
+                        this.randomPr_garOsn = garOsn
+                    },
+                    getSoupFood() {
+                        let idx4 = Math.floor(Math.random() * this.products_soup.length);
+                        while (idx4 === this.idxprev4) {
+                            idx4 = Math.floor(Math.random() * this.products_soup.length);
+                        }
+                        this.idxprev4 = idx4
+                        this.randomPr_soup = this.products_soup[idx4].name
                     }
                 }
             }
