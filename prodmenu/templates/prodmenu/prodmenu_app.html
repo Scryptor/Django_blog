@@ -19,7 +19,8 @@
 
         <div class="row">
             <div class="col-3 bg-white border-3 border-end">
-                <img :src="products_independant[idxprev1].image" class="img-fluid mt-2">
+                <img role="button" :src="products_independant[idxprev1].image" class="img-fluid mt-2"
+                     @click="getIndepFood">
                 <h5 class="bg-info mt-2 p-1 ps-2 text-white">{{ randomPr_indep }}</h5>
                 <div class="text-center text-black-50 text-break mb-2">
                     {{ products_independant[idxprev1].description }}
@@ -28,10 +29,12 @@
 
             <div class="col-6 bg-white">
                 <div class="row">
-                    <img :src="products_garnir[idxprev2].image" class="img-fluid mt-2 col-6">
-                    <img :src="products_osnova[idxprev3].image" class="img-fluid mt-2 col-6">
+                    <img role="button" :src="products_garnir[idxprev2].image" class="img-fluid mt-2 col-6"
+                         @click="getGarnirFood">
+                    <img role="button" :src="products_osnova[idxprev3].image" class="img-fluid mt-2 col-6"
+                         @click="getOsnovFood">
                 </div>
-                <h5 class="bg-info mt-2 p-1 ps-2 text-white">{{ randomPr_garOsn }}</h5>
+                <h5 class="bg-info mt-2 p-1 ps-2 text-white">{{ randomPr_gar }} и {{ randomPr_Osn }}</h5>
                 <div class="col-6 text-center text-black-50 text-break mb-2">
                     {{ products_garnir[idxprev2].description }}
                 </div>
@@ -41,7 +44,7 @@
             </div>
 
             <div class="col-3 bg-white border-3 border-start">
-                <img :src="products_soup[idxprev4].image" class="img-fluid mt-2">
+                <img role="button" :src="products_soup[idxprev4].image" class="img-fluid mt-2" @click="getSoupFood">
                 <h5 class="bg-info mt-2 p-1 ps-2 text-white">{{ randomPr_soup }}</h5>
                 <div class="text-center text-black-50 text-break mb-2">
                     {{ products_soup[idxprev4].description }}

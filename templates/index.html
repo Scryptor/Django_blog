@@ -44,40 +44,43 @@
 </head>
 <body style="background-color: #f0f0f0">
 
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light mb-3 shadow-sm" id="index_app">
-    <div class="container-fluid">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerD"
-                aria-controls="navbarTogglerD" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <a class="navbar-brand" href="{% url 'home' %}">Игорь.site</a>
-        <div class="collapse navbar-collapse" id="navbarTogglerD">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Главная</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'aboutmepage' %}">Обо мне</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/admin">Админка</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/prodmenu">Генератор еды</a>
-                </li>
-            </ul>
-            <form class="d-flex" method="get" action="/">
-                <input class="form-control me-2" type="search" placeholder="Что ищем?"
-                       aria-label="Искать" name="query">
-                <button class="btn btn-outline-success" type="submit">Искать</button>
-            </form>
-        </div>
-    </div>
-</nav>
-
 <div class="container">
-    {% block application %} {% endblock %}
+
+    <nav class=" row navbar navbar-expand-lg navbar-light bg-light mb-3 shadow-sm" id="index_app">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerD"
+                    aria-controls="navbarTogglerD" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" href="{% url 'home' %}">Игорь.site</a>
+            <div class="collapse navbar-collapse" id="navbarTogglerD">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Главная</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'aboutmepage' %}">Обо мне</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" target="_blank" href="/admin">Админка</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/prodmenu">Генератор еды</a>
+                    </li>
+                </ul>
+                <form class="d-flex" method="get" action="/">
+                    <input class="form-control me-2" type="search" placeholder="Что ищем?"
+                           aria-label="Искать" name="query">
+                    <button class="btn btn-outline-success" type="submit">Искать</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <div>
+        {% block application %} {% endblock %}
+    </div>
+
 </div>
+
 </body>
 </html>

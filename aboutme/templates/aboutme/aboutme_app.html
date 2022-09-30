@@ -1,7 +1,7 @@
 {% extends "index.html" %}
 {% block application %}
     {% verbatim %}
-    <div class="container" id="aboutme_app">
+    <div id="aboutme_app">
         <div class="row bg-white shadow-sm" v-for="m in me">
             <div class="col-8 mt-2">
                 <p class="fs-2">
@@ -14,19 +14,19 @@
                 <p>
                     <b>Мои соц сети:</b>
                 </p>
-                <div>
-                    <a v-bind:href=m.contacts_tg target="_blank">{{ m.contacts_tg }}</a>
-                    <br>
-                    <a class="mt-2" v-bind:href=m.contacts_vk target="_blank">{{ m.contacts_vk}}</a>
-                    <br>
-                    <a v-bind:href=m.contacts_youtube target="_blank">{{ m.contacts_youtube }}</a>
-                    <br>
-                    <a v-bind:href=m.contacts_habr target="_blank">{{ m.contacts_habr }}</a>
-                    <br>
-                    <a v-bind:href=m.contacts_pikabu target="_blank">{{ m.contacts_pikabu }}</a>
-                    <br>
-                     <a v-bind:href=m.contacts_github target="_blank">{{ m.contacts_github }}</a>
-                </div>
+                <ul class="text-break">
+                    <li><a v-bind:href=m.contacts_tg target="_blank">{{ m.contacts_tg }}</a></li>
+
+                    <li><a class="mt-2" v-bind:href=m.contacts_vk target="_blank">{{ m.contacts_vk}}</a></li>
+
+                    <li><a v-bind:href=m.contacts_youtube target="_blank">{{ m.contacts_youtube }}</a></li>
+
+                    <li><a v-bind:href=m.contacts_habr target="_blank">{{ m.contacts_habr }}</a></li>
+
+                    <li><a v-bind:href=m.contacts_pikabu target="_blank">{{ m.contacts_pikabu }}</a></li>
+
+                    <li><a v-bind:href=m.contacts_github target="_blank">{{ m.contacts_github }}</a></li>
+                </ul>
                 <div class="mt-2">
                     <div v-html="m.about"></div>
                 </div>
@@ -34,8 +34,10 @@
             </div>
             <div class="col-4 mt-2">
                 <img class="img-fluid mt-2 me-2 shadow-sm" v-bind:src="m.avatar"/>
-                <div class="mt-2 text-break text-black-50 text-center">Данный блог разработан мной, и постоянно дописывается.<br>
-                    Я часто создаю спонтанные проекты, которые потом становятся интересны людям, возможно и этот не исключение <br>
+                <div class="mt-2 text-break text-black-50 text-center">Данный блог разработан мной, и постоянно
+                    дописывается.<br>
+                    Я часто создаю спонтанные проекты, которые потом становятся интересны людям, возможно и этот не
+                    исключение <br>
                     Исходоный код открыт и выложен на <a href="https://github.com/Scryptor/Django_blog">GitHub</a>
                 </div>
             </div>
