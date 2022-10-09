@@ -1,45 +1,65 @@
 {% extends "index.html" %}
 {% block application %}
     {% verbatim %}
+    <h1 style="display: none">Блог имени меня</h1>
     <div id="blog_app">
-        <div class="row shadow-sm p-3 mb-3 bg-white" v-for="blog in blogs">
-            <a v-bind:href="'post/' + blog.id" class="text-decoration-none text-dark"><h3
-                    class="pb-3">{{ blog.title }}</h3></a>
 
-            <div class="col-xxl-7 col-xl-8 col-lg-8 col-md-8 col-sm-8">
-                <a v-bind:href="'post/' + blog.id">
-                    <img v-bind:src=blog.preview class="img-fluid shadow" style="width: 715px">
+
+         <aside class="main-sidebar">
+            <h3>Список постов:</h3>
+            <div class="aside-content" v-for="blog in blogs">
+                <a v-bind:href="'post/' + blog.id"><h5 class="text-break">{{ blog.title }}</h5></a>
+            </div>
+        </aside>
+
+         <section class="posts-main">
+            <article class="blog-post" v-for="blog in blogs">
+
+                <a v-bind:href="'post/' + blog.id" class="post-title">
+                    <h3>{{ blog.title }}</h3>
                 </a>
-                <p class="pt-3" style="color:darkcyan">
-                    {{ blog.creation_date | formatDate }}
-                    &nbsp;&nbsp;&nbsp;
-                    <a v-bind:href="'post/' + blog.id + '#comments_app'">Комментариев: {{ blog.num_comments }}</a>
+
+                <p class="post-datetime">
+                     {{ blog.creation_date | formatDate }}
                 </p>
-            </div>
-
-            <div class="col-xxl-5 col-xl-4 col-lg-4 col-md-4 col-sm-4">
-                <div class="fs-5 text-break">
-                    {{ blog.full_text | truncate(100, '...')}}
+                <div class="post-content">
+                    <a v-bind:href="'post/' + blog.id"><img v-bind:src=blog.preview></a>
+                    <p>
+                       {{ blog.full_text | truncate(100, '...')}}
+                    </p>
                 </div>
-                <br>
-                <a v-bind:href="'post/' + blog.id" type="button" class="btn btn-outline-secondary">Читать
-                    далее</a>
+                <div class="post-link">
+                    <a v-bind:href="'post/' + blog.id" type="button" class="button-read">Читать
+                        далее</a>
+                </div>
+
+                <section class="post-stats">
+                    <a v-bind:href="'post/' + blog.id + '#comments_app'">
+                        <img title="Комментарии" src="/static/images/comment.png">
+                    </a>
+                    <span>{{ blog.num_comments }}</span>
+
+                    <img title="Просмотры" src="/static/images/views.png">
+                    <span>3.3K</span>
+
+                </section>
+
+            </article>
+
+             <div class="paginator">
+                <div class="paginator-prev" @click="goToPrevPage">
+                    &lt;
+                </div>
+
+                <div class="paginator-pages">
+                    <div>{{ currpage }}</div>
+                </div>
+
+                <div class="paginator-next" @click="goToNextPage">
+                    &gt;
+                </div>
             </div>
-
-        </div>
-
-        <div class="text-center">
-            <nav aria-label="PageNumbers" class="text-center">
-                <ul class="pagination text-center">
-                    <li class="page-item"><a class="page-link" style="cursor: pointer" v-show="prevpage"
-                                             @click="goToPrevPage">i--</a></li>
-                    <li class="page-item"><a class="page-link" href="#">{{ currpage }}</a></li>
-                    <li class="page-item"><a class="page-link" style="cursor: pointer" v-show="nextpage"
-                                             @click="goToNextPage">i++</a></li>
-                </ul>
-            </nav>
-        </div>
-    </div>
+         </section>
 
     {% endverbatim %}
     <script src="/static/blogapp.js"></script>

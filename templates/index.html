@@ -2,19 +2,27 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Игорь.site</title>
-    <!-- CSS only -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
-          integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abrigen.ru - Абрамян Игорь Геннадьевич</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/vue@2.7.8/dist/vue.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.js"
             integrity="sha512-rozBdNtS7jw9BlC76YF1FQGjz17qQ0J/Vu9ZCFIW374sEy4EZRbRcUZa2RU/MZ90X2mnLU56F75VfdToGV0RiA=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <!-- JavaScript Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
-            crossorigin="anonymous"></script>
-    <link rel="shortcut icon" type="image/png" href="static/images/favicon.ico"/>
+
+    <link rel="shortcut icon" type="/static/image/png" href="static/images/favicon.ico"/>
+    <link rel="stylesheet" href="/static/css/reset.css"/>
+    <link rel="stylesheet" href="/static/css/defaults.css?v2"/>
+    <link rel="stylesheet" href="/static/css/style.css?v3"/>
+    <link rel="stylesheet" href="/static/css/article.css?v2"/>
+    <link rel="stylesheet" href="/static/css/aboutme.css?v1">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@500&family=Montserrat:wght@400&display=swap"
+          rel="stylesheet">
+
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript">
         (function (m, e, t, r, i, k, a) {
@@ -31,56 +39,58 @@
         })
         (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
 
-        ym(90498390, "init", {
+        ym(90642647, "init", {
             clickmap: true,
             trackLinks: true,
             accurateTrackBounce: true
         });
     </script>
     <noscript>
-        <div><img src="https://mc.yandex.ru/watch/90498390" style="position:absolute; left:-9999px;" alt=""/></div>
+        <div><img src="https://mc.yandex.ru/watch/90642647" style="position:absolute; left:-9999px;" alt=""/></div>
     </noscript>
     <!-- /Yandex.Metrika counter -->
 </head>
-<body style="background-color: #f0f0f0">
+<body>
 
-<div class="container">
+<div class="main-container">
+    <header class="main-header">
+        <nav class="main-nav">
+            <div class="nav-content">
+                <a class="navbar-brand" href="{% url 'home' %}">Abrigen.ru</a>
+                <div>
+                    <ul>
+                        <li>
+                            <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Главная</a>
+                        </li>
+                        <li>
+                            <a class="nav-link active" aria-current="page" href="{% url 'aboutmepage' %}">Обо мне</a>
+                        </li>
+                        <li>
+                            <a class="nav-link active" aria-current="page" target="_blank" href="/admin">Админка</a>
+                        </li>
+                        <li>
+                            <a class="nav-link active" aria-current="page" href="/prodmenu">Генератор еды</a>
+                        </li>
+                    </ul>
 
-    <nav class=" row navbar navbar-expand-lg navbar-light bg-light mb-3 shadow-sm" id="index_app">
-        <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerD"
-                    aria-controls="navbarTogglerD" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <a class="navbar-brand" href="{% url 'home' %}">Игорь.site</a>
-            <div class="collapse navbar-collapse" id="navbarTogglerD">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Главная</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{% url 'aboutmepage' %}">Обо мне</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" target="_blank" href="/admin">Админка</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/prodmenu">Генератор еды</a>
-                    </li>
-                </ul>
-                <form class="d-flex" method="get" action="/">
-                    <input class="form-control me-2" type="search" placeholder="Что ищем?"
-                           aria-label="Искать" name="query">
-                    <button class="btn btn-outline-success" type="submit">Искать</button>
-                </form>
+                    <form class="nav-form" method="get" action="/">
+                        <input class="form-input" type="search" placeholder="Что ищем?"
+                               aria-label="Искать" name="query">
+                        <button class="form-button-submit" type="submit">Искать</button>
+                    </form>
+                </div>
             </div>
-        </div>
-    </nav>
-    <div>
+        </nav>
+    </header>
+    <main class="main-vue">
         {% block application %} {% endblock %}
-    </div>
+    </main>
 
 </div>
-
+<footer class="main-footer">
+    <p>
+        Abrigen.ru - Абрамян Игорь Геннадьевич
+    </p>
+</footer>
 </body>
 </html>

@@ -1,0 +1,28 @@
+.aboutme-wrapper {
+    background-color: #fff;
+    padding: 15px;
+        font-family: Sans-Serif, serif;
+}
+
+.aboutme-left-column {
+    width: 700px;
+    margin-right: 350px;
+}
+
+.aboutme-right-column {
+    float: right;
+    width: 300px;
+}
+
+.aboutme-right-column img {
+    width: 300px;
+}
+
+.aboutme-left-column ul li {
+    margin-bottom: 6px;
+}
+
+.aboutme-right-column p {
+    text-align: center;
+    opacity: 0.7;
+}

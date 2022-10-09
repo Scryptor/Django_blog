@@ -2,19 +2,30 @@
 {% block application %}
     {% verbatim %}
     <div id="aboutme_app">
-        <div class="row bg-white shadow-sm" v-for="m in me">
-            <div class="col-8 mt-2">
-                <p class="fs-2">
+        <div class="aboutme-wrapper" v-for="m in me">
+
+              <div class="aboutme-right-column">
+                <img v-bind:src="m.avatar"/>
+                <p>Данный блог разработан мной, и постоянно
+                    дописывается.<br>
+                    Я часто создаю спонтанные проекты, которые потом становятся интересны людям, возможно и этот не
+                    исключение <br>
+                    Исходоный код открыт и выложен на <a href="https://github.com/Scryptor/Django_blog">GitHub</a>
+                </p>
+            </div>
+
+            <div class="aboutme-left-column">
+                <h1>
                     {{ m.fio }},
                     <mark>{{ m.nik }}</mark>
-                </p>
+                </h1>
                 <p>
-                    <b>Родился:</b> {{ m.birthday }}
+                    Родился: {{ m.birthday }}
                 </p>
-                <p>
-                    <b>Мои соц сети:</b>
-                </p>
-                <ul class="text-break">
+
+                <h3>Мои соц сети:</h3>
+
+                <ul>
                     <li><a v-bind:href=m.contacts_tg target="_blank">{{ m.contacts_tg }}</a></li>
 
                     <li><a class="mt-2" v-bind:href=m.contacts_vk target="_blank">{{ m.contacts_vk}}</a></li>
@@ -27,20 +38,11 @@
 
                     <li><a v-bind:href=m.contacts_github target="_blank">{{ m.contacts_github }}</a></li>
                 </ul>
-                <div class="mt-2">
+                <div>
                     <div v-html="m.about"></div>
                 </div>
-
             </div>
-            <div class="col-4 mt-2">
-                <img class="img-fluid mt-2 me-2 shadow-sm" v-bind:src="m.avatar"/>
-                <div class="mt-2 text-break text-black-50 text-center">Данный блог разработан мной, и постоянно
-                    дописывается.<br>
-                    Я часто создаю спонтанные проекты, которые потом становятся интересны людям, возможно и этот не
-                    исключение <br>
-                    Исходоный код открыт и выложен на <a href="https://github.com/Scryptor/Django_blog">GitHub</a>
-                </div>
-            </div>
+            <div class="clearfix"></div>
 
         </div>
     </div>
