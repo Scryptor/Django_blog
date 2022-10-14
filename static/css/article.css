@@ -32,6 +32,10 @@
     color: darkcyan;
 }
 
+.article-text img {
+    max-width: 1000px;
+}
+
 /*  Блок отправки комментариев   */
 
 .comments-send-wrapper {

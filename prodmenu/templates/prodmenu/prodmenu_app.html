@@ -1,63 +1,73 @@
 {% extends "index.html" %}
 {% block application %}
     {% verbatim %}
-    <div class="container" id="prodmenu_app">
-        <div class="row mt-2">
-            <button class="btn btn-primary rounded-0 mb-4" @click="getRandomFood">Поели</button>
+    <div class="foodgen-wrapper noselect" id="prodmenu_app">
+        <div class="foodgen-start-button">
+            <button @click="getRandomFood">Поели</button>
         </div>
-        <div class="row mb-1 bg-primary text-white">
-            <div role="button" class="col-3  border-3 border-end" @click="getIndepFood"><h5
-                    class="text-center text-break mb-2">
-                Самостоятельное блюдо</h5>
+        <div class="foodgen-buttons-wrapper">
+            <div role="button " class="lbutton" @click="getIndepFood">
+                <h3>Самостоятельное блюдо</h3>
             </div>
-            <div role="button" class="col-6" @click="getGarOsnFood"><h5 class="text-center text-break">Гарнир +
-                основное</h5></div>
-            <div role="button" class="col-3  border-3 border-start" @click="getSoupFood"><h5
-                    class="text-center text-break">Суп</h5>
-            </div>
-        </div>
 
-        <div class="row">
-            <div class="col-3 bg-white border-3 border-end">
-                <img role="button" :src="products_independant[idxprev1].image" class="img-fluid mt-2"
+            <div role="button" class="rbutton" @click="getSoupFood">
+                <h3>Суп</h3>
+            </div>
+
+            <div role="button" class="mbutton" @click="getGarOsnFood">
+                <h3>Гарнир +основное</h3>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="foodgen-wrapper-food">
+            <div class="lbutton food-noborder">
+                <img role="button" :src="products_independant[idxprev1].image"
                      @click="getIndepFood">
-                <h5 class="bg-info mt-2 p-1 ps-2 text-white">{{ randomPr_indep }}</h5>
-                <div class="text-center text-black-50 text-break mb-2">
-                    {{ products_independant[idxprev1].description }}
+                <h3>{{ randomPr_indep }}</h3>
+                <div class="food-descr">
+                    <p>
+                        {{ products_independant[idxprev1].description }}
+                    </p>
+
                 </div>
             </div>
 
-            <div class="col-6 bg-white">
-                <div class="row">
-                    <img role="button" :src="products_garnir[idxprev2].image" class="img-fluid mt-2 col-6"
-                         @click="getGarnirFood">
-                    <img role="button" :src="products_osnova[idxprev3].image" class="img-fluid mt-2 col-6"
-                         @click="getOsnovFood">
-                </div>
-                <h5 class="bg-info mt-2 p-1 ps-2 text-white">{{ randomPr_gar }} и {{ randomPr_Osn }}</h5>
-                <div class="col-6 text-center text-black-50 text-break mb-2">
-                    {{ products_garnir[idxprev2].description }}
-                </div>
-                <div class="col-6 text-center text-black-50 text-break mb-2">
-                    {{ products_osnova[idxprev3].description }}
+            <div class="rbutton food-noborder">
+                <img role="button" :src="products_soup[idxprev4].image" @click="getSoupFood">
+                <h3>{{ randomPr_soup }}</h3>
+                <div class="food-descr">
+                    <p>
+                        {{ products_soup[idxprev4].description }}
+                    </p>
                 </div>
             </div>
 
-            <div class="col-3 bg-white border-3 border-start">
-                <img role="button" :src="products_soup[idxprev4].image" class="img-fluid mt-2" @click="getSoupFood">
-                <h5 class="bg-info mt-2 p-1 ps-2 text-white">{{ randomPr_soup }}</h5>
-                <div class="text-center text-black-50 text-break mb-2">
-                    {{ products_soup[idxprev4].description }}
+            <div class="mbutton food-noborder">
+                <div>
+                    <img role="button" :src="products_garnir[idxprev2].image" @click="getGarnirFood">
+                    <img role="button" :src="products_osnova[idxprev3].image" @click="getOsnovFood">
+                </div>
+                <h3>{{ randomPr_gar }} и {{ randomPr_Osn }}</h3>
+                <div class="food-descr">
+                    <p>
+                        {{ products_garnir[idxprev2].description }}
+                    </p>
+
+                </div>
+                <div class="food-descr">
+                    <p>
+                        {{ products_osnova[idxprev3].description }}
+                    </p>
                 </div>
             </div>
         </div>
-        <div class="text-break text-center text-black-50 mt-2">
-            Моя девушка постоянно спрашивает, что сегодня приготовоить, чтобы не мучать себя, придумывая каждый раз,
-            я составил список блюд, которые она готовит, и написал генератор еды )
-        </div>
-
     </div>
     {% endverbatim %}
+    <div class="foodgen-info">
+        Моя девушка постоянно спрашивает, что сегодня приготовоить, чтобы не мучать себя, придумывая каждый раз,
+        я составил список блюд, которые она готовит и написал генератор еды )
+    </div>
 
     <script src="/static/prodmenu.js"></script>
 

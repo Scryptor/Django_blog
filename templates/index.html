@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Abrigen.ru - Абрамян Игорь Геннадьевич</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.8/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.8"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.js"
             integrity="sha512-rozBdNtS7jw9BlC76YF1FQGjz17qQ0J/Vu9ZCFIW374sEy4EZRbRcUZa2RU/MZ90X2mnLU56F75VfdToGV0RiA=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="/static/css/style.css?v3"/>
     <link rel="stylesheet" href="/static/css/article.css?v2"/>
     <link rel="stylesheet" href="/static/css/aboutme.css?v1">
+    <link rel="stylesheet" href="/static/css/foodgen.css?v1">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -51,37 +52,38 @@
     <!-- /Yandex.Metrika counter -->
 </head>
 <body>
+<header class="main-header">
+    <nav class="main-nav">
+        <div class="nav-content">
+            <a class="navbar-brand" href="{% url 'home' %}">Abrigen.ru</a>
+            <div>
+                <ul>
+                    <li>
+                        <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Главная</a>
+                    </li>
+                    <li>
+                        <a class="nav-link active" aria-current="page" href="{% url 'aboutmepage' %}">Обо мне</a>
+                    </li>
+                    <li>
+                        <a class="nav-link active" aria-current="page" target="_blank" href="/admin">Админка</a>
+                    </li>
+                    <li>
+                        <a class="nav-link active" aria-current="page" href="/prodmenu">Генератор еды</a>
+                    </li>
+                </ul>
+
+                <form class="nav-form" method="get" action="/">
+                    <input class="form-input" type="search" placeholder="Что ищем?"
+                           aria-label="Искать" name="query">
+                    <button class="form-button-submit" type="submit">Искать</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+</header>
 
 <div class="main-container">
-    <header class="main-header">
-        <nav class="main-nav">
-            <div class="nav-content">
-                <a class="navbar-brand" href="{% url 'home' %}">Abrigen.ru</a>
-                <div>
-                    <ul>
-                        <li>
-                            <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Главная</a>
-                        </li>
-                        <li>
-                            <a class="nav-link active" aria-current="page" href="{% url 'aboutmepage' %}">Обо мне</a>
-                        </li>
-                        <li>
-                            <a class="nav-link active" aria-current="page" target="_blank" href="/admin">Админка</a>
-                        </li>
-                        <li>
-                            <a class="nav-link active" aria-current="page" href="/prodmenu">Генератор еды</a>
-                        </li>
-                    </ul>
 
-                    <form class="nav-form" method="get" action="/">
-                        <input class="form-input" type="search" placeholder="Что ищем?"
-                               aria-label="Искать" name="query">
-                        <button class="form-button-submit" type="submit">Искать</button>
-                    </form>
-                </div>
-            </div>
-        </nav>
-    </header>
     <main class="main-vue">
         {% block application %} {% endblock %}
     </main>
