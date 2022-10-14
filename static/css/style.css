@@ -12,8 +12,9 @@ html, body {
 }
 
 .main-container {
-    width: 1055px;
+    width: 100%;
     margin: 63px auto 50px auto;
+    max-width: 1055px;
 }
 
 .main-footer {
@@ -27,7 +28,8 @@ html, body {
 }
 
 .main-nav {
-    width: 1055px;
+    max-width: 1055px;
+    width: 100%;
     margin: 0 auto;
 }
 
@@ -279,11 +281,74 @@ a.button-read:focus {
 }
 
 .shadow {
-    background: #f0f0f0; /* Цвет фона */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Параметры тени */
+    background: #f0f0f0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     padding: 10px;
 }
 
 .clearfix {
     clear: both;
+}
+
+/*Для мобилок*/
+@media screen and (max-width: 846px) {
+    /*Отключаем боковую панель*/
+    .main-sidebar {
+        visibility: hidden;
+        display: none;
+    }
+
+    /*пост на полный экран */
+    .blog-post {
+        margin-right: 0;
+    }
+
+    /*Правим навигацию*/
+    .main-header form {
+        visibility: hidden;
+        display: none;
+    }
+
+    .navbar-brand {
+        visibility: hidden;
+        display: none;
+    }
+
+    .admin-panel {
+        visibility: hidden;
+        display: none;
+    }
+
+    .nav-content ul li {
+        padding-left: 20px !important;
+    }
+
+    /*Обо мне*/
+    .aboutme-left-column {
+        width: 100% !important;
+    }
+
+    .aboutme-left-column ul li {
+        word-wrap: break-word;
+    }
+
+    .aboutme-right-column {
+        float: none !important;
+        margin: 0 auto;
+    }
+
+    .aboutme-left-column h1 {
+        text-align: center;
+    }
+
+    /*Blog пост*/
+    .article-img img {
+        width: 100%;
+    }
+
+    .article-text img {
+        width: 100%;
+    }
+
+
 }

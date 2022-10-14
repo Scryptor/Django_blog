@@ -140,3 +140,12 @@
 .comments-content .comments-text {
     font-family: 'Montserrat', sans-serif;
 }
+
+ .article-text pre {
+        border-left: 4px solid;
+        border-top: 1px dashed;
+        border-bottom: 1px dashed;
+        overflow: scroll;
+        padding: 5px 5px 15px 5px;
+
+}
