@@ -20,7 +20,7 @@ from aboutme.views import AboutMeView, aboutme_app
 from comments.views import CommentsView
 from django.conf.urls.static import static
 from django.conf import settings
-from igors_tools.views import puny
+from igors_tools.views import puny, tg_messager, person
 from rest_framework.routers import SimpleRouter
 
 from prodmenu.views import prodmenu_app, ProdmenuView
@@ -38,6 +38,9 @@ urlpatterns = [
     path('aboutme/', aboutme_app, name="aboutmepage"),
     path('', blog_app, name="home"),
     path('prodmenu/', prodmenu_app, name="eater"),
+    path('telegram/',  tg_messager, name="tg_messager"),
+    path('persona/', person, name="tg_messager"),
+
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,0 +1,81 @@
+.main-page-preview-person {
+    display: flex;
+    justify-content: center;
+    margin-top: 200px;
+}
+
+.person-wrapper {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background-color: lightgray;
+    position: relative;
+    border-radius: 20px;
+    padding: 120px 20px 20px 20px;
+    max-width: 405px;  
+}
+
+.person-wrapper:hover {
+    animation: shadow 2s infinite ease-in-out;
+} 
+
+.person-avatar {
+    background-image: url("/static/images/myimgs/tg_messager/avatars/client_avatar.webp");
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 50%;
+    height: 200px;
+    width: 200px;
+    background-position: center;
+    position: absolute;
+    top: -100px;
+    box-shadow: 0 0 7px 0px gray;
+    animation: sit-down 2s infinite ease-in-out;
+    background-color: transparent;
+}
+
+.person-texts {
+    text-align: center;
+}
+
+.person-name {
+    font-size: 35px;
+    font-weight: 500;
+    font-family: sans-serif, serif;
+    margin-bottom: 20px;
+}
+
+.person-descr {
+    font-size: 20px;
+    line-height: 22px;
+    font-family: sans-serif, serif;
+}
+
+@keyframes sit-down {
+    from {
+        background-position-y: -20px;
+    }
+
+    50% {
+        background-position-y: -1px;
+    }
+
+    to {
+        background-position-y: -20px;
+    }
+}
+
+@keyframes shadow {
+    from {
+        box-shadow: 0 0 7px 0 gray;
+    }
+
+    50% {
+        box-shadow: 0 0 70px 0 gray;
+    }
+
+    to {
+        box-shadow: 0 0 7px 0 gray;
+    }
+}

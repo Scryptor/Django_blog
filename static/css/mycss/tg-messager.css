@@ -1,0 +1,106 @@
+body {
+    background-color: #303b44;
+}
+.main-page-feedback {
+    display: flex;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+
+.tg-background {
+    background-image: url("/static/images/myimgs/tg_messager/feedback-tg.svg");
+    height: 100vh;
+    width: 100vh;
+    background-color: #0e1621;
+    padding: 10px;
+
+}
+
+.tg-message {
+    display: flex;
+    padding: 5px 5px;
+}
+
+.tg-message:first-child {
+    margin-top: 20px;
+}
+
+.tg-message-right {
+    justify-content: flex-end;
+}
+
+.tg-message-text {
+    background-color: #182533;
+    border-radius: 10px 10px 10px 0;
+    padding: 10px;
+    max-width: 280px;
+}
+
+.tg-message-right .tg-message-text {
+    border-radius: 10px 10px 0 10px;
+}
+
+.tg-message-left .tg-avatar::after {
+    content: "";
+    position: absolute;
+    left: 36px;
+    top: 13.5px;
+    border-top: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-left: 15px solid transparent;
+    border-bottom: 15px solid #182533;
+}
+
+.tg-message-right .tg-avatar::after {
+    content: "";
+    position: absolute;
+    left: -21px;
+    top: 8px;
+    border-top: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-left: 15px solid transparent;
+    border-bottom: 15px solid #182533;
+}
+
+
+.tg-author {
+    padding: 0;
+    color: rgb(234, 72, 72);
+    font-weight: 500;
+    margin: 0;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.tg-text {
+    color: white;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 18px;
+    margin: 0
+}
+
+.tg-avatar {
+    align-self: flex-end;
+    position: relative;
+}
+
+.tg-avatar img {
+    border-radius: 50%;
+    width: 35px;
+    position: relative;
+    top: 3px;
+}
+
+.tg-message-left .tg-avatar img {
+    margin-right: 10px;
+}
+
+.tg-message-right .tg-avatar img {
+    margin-left: 10px;
+}
+
+.tg-message-right .tg-avatar {
+    order: 2;
+}

@@ -6,7 +6,7 @@
     margin-bottom: 15px;
 }
 
-.article-wrapper .article-content h2 {
+.article-wrapper .article-content h1 {
     margin-bottom: 20px;
     font-family: 'Fira Sans', sans-serif;
     color: #333;
@@ -141,11 +141,13 @@
     font-family: 'Montserrat', sans-serif;
 }
 
- .article-text pre {
-        border-left: 4px solid;
-        border-top: 1px dashed;
-        border-bottom: 1px dashed;
-        overflow: scroll;
-        padding: 5px 5px 15px 5px;
+.article-text pre {
+    border-left: 4px solid;
+    border-top: 1px dashed;
+    border-bottom: 1px dashed;
+    border-color: darkcyan;
+    overflow: scroll;
+    padding: 5px 5px 15px 5px;
+    margin-left: 10px;
 
 }

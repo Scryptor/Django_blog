@@ -15,7 +15,7 @@ from comments.models import Comments
 
 
 class PagePagination(PageNumberPagination):
-    page_size = 5
+    page_size = 15
 
 
 class BlogView(ModelViewSet):
